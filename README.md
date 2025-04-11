@@ -6,7 +6,7 @@ This repository contains a script that automates specific tasks. To execute the 
 ## Prerequisites
 Make sure you have the following tools installed:
 - **Java Development Kit (JDK)** (Version 8 or higher)
-- **Apache Maven** (Optional, for build management)
+- **Apache Maven** (for build management)
 - **TestNG** (Latest version)
 
 ## File Structure
