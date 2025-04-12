@@ -48,9 +48,6 @@ public class Assignment_Q1 {
         String shortestText = Assignment_Q1.shortestOption(searchList);
         String longestText = Assignment_Q1.longestOption(searchList);
 
-        System.out.println(shortestText);
-        System.out.println(longestText);
-
         ExcelUtility excelUtility = new ExcelUtility(filePath);
 
         excelUtility.setCellData(sheetName,startingPointRow,3,longestText);
