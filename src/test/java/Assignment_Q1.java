@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -23,7 +24,7 @@ public class Assignment_Q1 {
     LocalDate date = LocalDate.now();
     DayOfWeek dayOfWeek = date.getDayOfWeek();
     String sheetName = dayOfWeek.toString().trim();
-    int startingPointRow = 2;
+    static int startingPointRow = 2;
 
     @BeforeClass
     public void setup(){
@@ -36,12 +37,21 @@ public class Assignment_Q1 {
 
     }
 
+    @AfterClass
+    public void tearDown(){
+        driver.quit();
+    }
+
     @Test(dataProvider = "MyData")
     public void TC001_MyTest(String data) throws IOException {
 
         WebElement searchBox = driver.findElement(By.xpath("//textarea[@id='APjFqb']"));
         searchBox.clear();
-        searchBox.sendKeys(data);
+        try {
+            searchBox.sendKeys(data);
+        } catch (Exception e) {
+            searchBox.sendKeys("");
+        }
 
         List<WebElement> searchList = driver.findElements(By.xpath("//div[@id='Alh6id']//ul[@role='listbox']/li"));
 
@@ -57,18 +67,13 @@ public class Assignment_Q1 {
 
     }
 
-    @AfterClass
-    public void tearDown(){
-        driver.quit();
-    }
-
     @DataProvider(name="MyData")
     private String[] dataProvider() throws IOException {
 
         ExcelUtility utility = new ExcelUtility(filePath);
 
         int rowCount = utility.getNumberOfRow(sheetName);
-        String[] data = new String[rowCount];
+        String[] data = new String[rowCount-1];
 
         for(int i=2; i<=rowCount; i++){
 

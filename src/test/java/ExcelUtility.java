@@ -1,4 +1,5 @@
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -12,6 +13,7 @@ public class ExcelUtility {
     public FileOutputStream fo;
     public XSSFWorkbook workbook;
     public XSSFSheet sheet;
+    public XSSFRow row;
     public XSSFCell cell;
     public String filePath;
 
@@ -47,6 +49,7 @@ public class ExcelUtility {
         } catch (Exception e) {
             cellData = "";
         }
+
 
         workbook.close();
         fi.close();
